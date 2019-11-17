@@ -2,6 +2,7 @@ from sklearn.datasets import fetch_openml
 import numpy.random
 import numpy
 import json
+from joblib import Parallel, delayed
 
 mnist = fetch_openml('mnist_784')
 data = mnist['data']
@@ -45,6 +46,8 @@ def run_for_k(k, n):
     print(f"correct predication percentage for k:{k} is: {correct_predictions_rate}")
     return correct_predictions_rate
 
+def run_in_parallel(results, key, k, n):
+    results[key] = run_for_k(k=k, n=n)
 
 def return_results(results, file_name=None):
     if file_name is None:
@@ -55,9 +58,8 @@ def return_results(results, file_name=None):
 
 
 def section_b(file_name=None):
-
     print("Running section (b)")
-    result = {"prediction_rate" : run_for_k(10, 1000)}
+    result = {"prediction_rate": run_for_k(10, 1000)}
     return return_results(results=result, file_name=file_name)
 
 
@@ -65,8 +67,7 @@ def section_c(file_name=None):
     print("Running section (c)")
 
     results = {}
-    for k in range(1, 101):
-        results[k] = run_for_k(k=k, n=1000)
+    Parallel(n_jobs=16)(delayed(run_in_parallel)(results, k, k, 1000) for k in range(1, 101))
 
     print(f"{results}")
     return return_results(results=results, file_name=file_name)
@@ -76,8 +77,7 @@ def section_d(file_name=None):
     print("Running section (d)")
 
     results = {}
-    for n in range(100, 5100, step=100):
-        results[n] = run_for_k(k=1, n=n)
+    Parallel(n_jobs=16)(delayed(run_in_parallel)(results, n, 1, n) for n in range(100, 5100, step=100))
 
     print(f"{results}")
     return return_results(results=results, file_name=file_name)
