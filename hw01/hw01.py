@@ -62,8 +62,7 @@ def section_b(file_name=None):
 def section_c(file_name=None):
     print("Running section (c)")
 
-    results = Parallel(n_jobs=16)(delayed(run_job)(k, k, 1000) for k in range(1, 3))
-    # results = Parallel(n_jobs=16)(delayed(run_job)(k, k, 1000) for k in range(1, 101))
+    results = Parallel(n_jobs=16)(delayed(run_job)(k, k, 1000) for k in range(1, 101))
     print(results)
 
     create_graph(results, "n", "error rate", "section-c.png")
