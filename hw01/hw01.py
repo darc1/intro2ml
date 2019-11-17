@@ -33,7 +33,7 @@ def run_for_k(k, n):
 
 
 def run_job(key, k, n):
-    return {key: run_for_k(k=k, n=n)}
+    return [key, run_for_k(k=k, n=n)]
 
 
 def return_results(results, file_name=None):
@@ -45,9 +45,8 @@ def return_results(results, file_name=None):
 
 
 def create_graph(results, x_label, y_label, file_name):
-    x_values = list(results.keys())
-    x_values.sort()
-    y_values = [results[x] for x in x_values]
+    x_values = [v[0] for v in results]
+    y_values = [(1 - v[1]) for v in results]
     plt.plot(x_values, y_values)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
@@ -63,7 +62,8 @@ def section_b(file_name=None):
 def section_c(file_name=None):
     print("Running section (c)")
 
-    results = Parallel(n_jobs=16)(delayed(run_job)(k, k, 1000) for k in range(1, 101))
+    results = Parallel(n_jobs=16)(delayed(run_job)(k, k, 1000) for k in range(1, 3))
+    # results = Parallel(n_jobs=16)(delayed(run_job)(k, k, 1000) for k in range(1, 101))
     print(results)
 
     create_graph(results, "n", "error rate", "section-c.png")
