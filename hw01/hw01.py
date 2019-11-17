@@ -26,9 +26,9 @@ def run_for_k(k, n):
         if prediction == test_labels[i]:
             correct_predictions += 1
 
-    print(f"number of correct predictions: {correct_predictions}")
-    correct_predictions_rate = float(correct_predictions) / float(test)
-    print(f"correct predication percentage for k:{k} is: {correct_predictions_rate}")
+    print(f"number of correct predictions for (k={k}, n={n}): {correct_predictions}")
+    correct_predictions_rate = float(correct_predictions) / float(len(test))
+    print(f"correct predication percentage for (k={k},n={n}): {correct_predictions_rate}")
     return correct_predictions_rate
 
 
