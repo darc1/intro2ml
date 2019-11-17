@@ -2,6 +2,7 @@ import numpy
 
 
 def knn(train_images, labels, testimage, k):
+    # print(f"number of train images: {len(train_images)}")
     distances = numpy.zeros(len(train_images))
 
     for i in range(len(train_images)):

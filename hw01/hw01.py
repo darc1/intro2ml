@@ -21,13 +21,13 @@ test_labels = labels[idx[10000:]]
 def run_for_k(k, n):
     print(f"running kNN for {n} images with k={k}")
     correct_predictions = 0
-    for i in range(n):
-        prediction = knn(train, train_labels, test[i], k=k)
+    for i in range(len(test)):
+        prediction = knn(train[:n], train_labels, test[i], k=k)
         if prediction == test_labels[i]:
             correct_predictions += 1
 
     print(f"number of correct predictions: {correct_predictions}")
-    correct_predictions_rate = float(correct_predictions) / float(n)
+    correct_predictions_rate = float(correct_predictions) / float(test)
     print(f"correct predication percentage for k:{k} is: {correct_predictions_rate}")
     return correct_predictions_rate
 
@@ -65,7 +65,7 @@ def section_c(file_name=None):
     results = Parallel(n_jobs=16)(delayed(run_job)(k, k, 1000) for k in range(1, 101))
     print(results)
 
-    create_graph(results, "n", "error rate", "section-c.png")
+    create_graph(results, "k", "error rate", "section-c.png")
 
     return return_results(results=results, file_name=file_name)
 
@@ -73,13 +73,16 @@ def section_c(file_name=None):
 def section_d(file_name=None):
     print("Running section (d)")
 
-    results = Parallel(n_jobs=16)(delayed(run_job)(n, 1, n) for n in range(100, 5100, 100))
+    results = Parallel(n_jobs=16)(delayed(run_job)(n, 1, n) for n in range(100, 5001, 100))
     print(results)
-    create_graph(results, "k", "error rate", "section-d.png")
+    create_graph(results, "n", "error rate", "section-d.png")
 
     return return_results(results=results, file_name=file_name)
 
 
-# section_b(file_name="sectionB.json")
+section_b(file_name="sectionB.json")
 section_c(file_name="sectionC.json")
 section_d(file_name="sectionD.json")
+
+
+
