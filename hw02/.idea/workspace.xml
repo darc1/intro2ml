@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5cf5354-5ba0-4f75-80aa-4bd54ca0244a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW2.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hw02.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hw2 - py files.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intervals.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/section-a.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/section-c.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/skeleton.py" afterDir="false" />
-    </list>
+    <list default="true" id="a5cf5354-5ba0-4f75-80aa-4bd54ca0244a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/skeleton.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="977">
-              <caret line="101" column="18" lean-forward="true" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
+            <state relative-caret-position="746">
+              <caret line="127" column="40" lean-forward="true" selection-start-line="127" selection-start-column="40" selection-end-line="127" selection-end-column="40" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#91#109#0" expanded="true" />
@@ -197,12 +185,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574368422462</updated>
-      <workItem from="1574368446247" duration="21241000" />
+      <workItem from="1574368446247" duration="22048000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21241000" />
+    <option name="totallyTimeSpent" value="22048000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="76" width="3364" height="1996" extended-state="7" />
@@ -336,8 +324,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="977">
-          <caret line="101" column="18" lean-forward="true" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
+        <state relative-caret-position="746">
+          <caret line="127" column="40" lean-forward="true" selection-start-line="127" selection-start-column="40" selection-end-line="127" selection-end-column="40" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#91#109#0" expanded="true" />

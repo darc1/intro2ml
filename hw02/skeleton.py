@@ -58,7 +58,8 @@ class Assignment2(object):
             plt.plot(interval, (0.5, 0.5))
 
         plt.savefig("section-a.png")
-        plt.show()
+        # plt.show()
+        plt.clf()
 
     def experiment_m_range_erm(self, m_first, m_last, step, k, T):
         """Runs the ERM algorithm.
@@ -99,7 +100,8 @@ class Assignment2(object):
         plt.xlabel('m')
         plt.legend()
         plt.savefig("section-c.png")
-        plt.show()
+        # plt.show()
+        plt.clf()
 
     def experiment_k_range_erm(self, m, k_first, k_last, step):
         """Finds the best hypothesis for k= 1,2,...,10.
@@ -133,7 +135,8 @@ class Assignment2(object):
         plt.xlabel('k')
         plt.legend()
         plt.savefig("section-d.png")
-        plt.show()
+        # plt.show()
+        plt.clf()
 
     def experiment_k_range_srm(self, m, k_first, k_last, step):
         """Runs the experiment in (d).
