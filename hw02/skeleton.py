@@ -88,8 +88,8 @@ class Assignment2(object):
             #     empirical_errors[i] = emp_error / m
             #     true_error = self.calc_ep(best_intervals)
             #     true_errors[i] = true_error
-
-            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for t in range(T))
+            samples = self.sample_from_D(m)
+            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for t in range(T))
 
             data["m"].append(m)
             data["es"].append(np.average([e[0] for e in results]))
@@ -115,6 +115,7 @@ class Assignment2(object):
         """
 
         data = {"k": [], "es": [], "ep": []}
+        samples = self.sample_from_D(m)
         # for k in range(k_first, k_last + 1):
             # values = self.sample_from_D(m)
             # x = values[:, 0]
@@ -122,7 +123,7 @@ class Assignment2(object):
             # h_intervals, es = intervals.find_best_interval(x, y, k)
             # ep = self.calc_ep(h_intervals)
 
-        results: list = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for k in range(k_first, k_last+1, step))
+        results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for k in range(k_first, k_last + 1, step))
         sorted(results, key=lambda item: item[2])
 
         for result in results:
@@ -152,6 +153,7 @@ class Assignment2(object):
         """
 
         data = {"k": [], "es": [], "ep": [], "penalty": [], "srm": []}
+        samples = self.sample_from_D(m)
         # for k in range(k_first, k_last + 1):
         # values = self.sample_from_D(m)
         # x = values[:, 0]
@@ -159,20 +161,21 @@ class Assignment2(object):
         # h_intervals, es = intervals.find_best_interval(x, y, k)
         # ep = self.calc_ep(h_intervals)
 
-        results: list = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for k in range(k_first, k_last+1, step))
+        results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for k in range(k_first, k_last + 1, step))
         sorted(results, key=lambda item: item[2])
 
         for result in results:
             data["k"].append(result[2])
             data["es"].append(result[0])
             data["ep"].append(result[1])
-            data["penalty"].append(self.srm_penalty(result[2], m, 0.1))
-            data["srm"].append(self.srm_penalty(result[2], m, 0.1) + result[0])
+            srm_penalty = self.srm_penalty(result[2], m, 0.1)
+            data["penalty"].append(srm_penalty)
+            data["srm"].append(srm_penalty + result[0])
 
         plt.plot('k', 'es', data=data, marker='o', markerfacecolor='blue', markersize=4, color='skyblue', linewidth=0)
         plt.plot('k', 'ep', data=data, marker='o', markerfacecolor='orange', markersize=4, color='orange', linewidth=0)
         plt.plot('k', 'penalty', data=data, marker='o', markerfacecolor='darkred', markersize=4, color='darkred', linewidth=0)
-        plt.plot('k', 'srm', data=data, marker='o', markerfacecolor='purple', markersize=4, color='purple', linewidth=0)
+        plt.plot('k', 'srm', data=data, marker='o', markerfacecolor='green', markersize=4, color='green', linewidth=0)
         plt.xlabel('k')
         plt.legend()
         plt.savefig("section-e.png")
@@ -188,10 +191,15 @@ class Assignment2(object):
 
         Returns: The best k value (an integer) found by the cross validation algorithm.
         """
-        # TODO: Implement me
-        pass
 
-    #################################
+        k_values = [k for k in range(1, 15)]
+        for t in range(T):
+            samples = self.sample_from_D(m)
+            s_t = samples[:m/5]
+            s_ho = samples[m/5:]
+            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, m) for k in k_values)
+
+#################################
     # Place for additional methods
 
     def get_best_k(self, ks, errors):
@@ -201,7 +209,7 @@ class Assignment2(object):
         return best_k
 
     def srm_penalty(self, k, m, delta):
-        return np.sqrt((1.0/float(m))*np.log((2.0*k)/delta))
+        return np.sqrt((1.0/(2.0*m))*np.log((2.0*k)/delta))
 
     def calc_ep(self, h_intervals):
         # p1 -- x in [[0.0, 0.2], [0.4, 0.6], [0.8, 1.0]] p[Y=1|X=x]=0.8, p[Y=0|X=x]=0.2
@@ -235,13 +243,12 @@ class Assignment2(object):
             sum_overlap += max(0, min(interval[1], group_interval[1]) - max(interval[0], group_interval[0]))
         return sum_overlap
 
-    def run_for_k_and_m(self,k ,m):
-        values = self.sample_from_D(m)
-        x = values[:, 0]
-        y = values[:, 1]
+    def run_for_k(self, k, samples):
+        x = samples[:, 0]
+        y = samples[:, 1]
         best_intervals, emp_error = intervals.find_best_interval(x, y, k)
         true_error = self.calc_ep(best_intervals)
-        return emp_error/m, true_error, k, m
+        return emp_error/len(samples), true_error, k, len(samples)
 
     #################################
 
