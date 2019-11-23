@@ -5,7 +5,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import intervals
-from joblib import Parallel, delayed
+from joblib import Parallel, delayed, cpu_count
 
 
 class Assignment2(object):
@@ -89,14 +89,14 @@ class Assignment2(object):
             #     true_error = self.calc_ep(best_intervals)
             #     true_errors[i] = true_error
 
-            results = Parallel(n_jobs=20)(delayed(self.run_for_k_and_m)(k, m) for t in range(T))
+            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for t in range(T))
 
             data["m"].append(m)
             data["es"].append(np.average([e[0] for e in results]))
             data["ep"].append(np.average([e[1] for e in results]))
 
-        plt.plot('m', 'es', data=data, marker='o', markerfacecolor='blue', markersize=12, color='skyblue', linewidth=4)
-        plt.plot('m', 'ep', data=data, marker='s', markerfacecolor='orange', markersize=12, color='orange', linewidth=4)
+        plt.plot('m', 'es', data=data, marker='o', markerfacecolor='blue', markersize=4, color='skyblue', linewidth=0)
+        plt.plot('m', 'ep', data=data, marker='o', markerfacecolor='orange', markersize=4, color='orange', linewidth=0)
         plt.xlabel('m')
         plt.legend()
         plt.savefig("section-c.png")
@@ -122,7 +122,7 @@ class Assignment2(object):
             # h_intervals, es = intervals.find_best_interval(x, y, k)
             # ep = self.calc_ep(h_intervals)
 
-        results: list = Parallel(n_jobs=20)(delayed(self.run_for_k_and_m)(k, m) for k in range(k_first, k_last+1))
+        results: list = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for k in range(k_first, k_last+1, step))
         sorted(results, key=lambda item: item[2])
 
         for result in results:
@@ -130,13 +130,14 @@ class Assignment2(object):
             data["es"].append(result[0])
             data["ep"].append(result[1])
 
-        plt.plot('k', 'es', data=data, marker='o', markerfacecolor='blue', markersize=12, color='skyblue', linewidth=4)
-        plt.plot('k', 'ep', data=data, marker='s', markerfacecolor='orange', markersize=12, color='orange', linewidth=4)
+        plt.plot('k', 'es', data=data, marker='o', markerfacecolor='blue', markersize=4, color='skyblue', linewidth=0)
+        plt.plot('k', 'ep', data=data, marker='o', markerfacecolor='orange', markersize=4, color='orange', linewidth=0)
         plt.xlabel('k')
         plt.legend()
         plt.savefig("section-d.png")
         # plt.show()
         plt.clf()
+        return self.get_best_k(data["k"], data["es"])
 
     def experiment_k_range_srm(self, m, k_first, k_last, step):
         """Runs the experiment in (d).
@@ -149,8 +150,33 @@ class Assignment2(object):
 
         Returns: The best k value (an integer) according to the SRM algorithm.
         """
-        # TODO: Implement the loop
-        pass
+
+        data = {"k": [], "es": [], "ep": [], "penalty": [], "srm": []}
+        # for k in range(k_first, k_last + 1):
+        # values = self.sample_from_D(m)
+        # x = values[:, 0]
+        # y = values[:, 1]
+        # h_intervals, es = intervals.find_best_interval(x, y, k)
+        # ep = self.calc_ep(h_intervals)
+
+        results: list = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for k in range(k_first, k_last+1, step))
+        sorted(results, key=lambda item: item[2])
+
+        for result in results:
+            data["k"].append(result[2])
+            data["es"].append(result[0])
+            data["ep"].append(result[1])
+            data["penalty"].append(self.srm_penalty(result[2], m, 0.1))
+            data["srm"].append(self.srm_penalty(result[2], m, 0.1) + result[0])
+
+        plt.plot('k', 'es', data=data, marker='o', markerfacecolor='blue', markersize=4, color='skyblue', linewidth=0)
+        plt.plot('k', 'ep', data=data, marker='o', markerfacecolor='orange', markersize=4, color='orange', linewidth=0)
+        plt.xlabel('k')
+        plt.legend()
+        plt.savefig("section-d.png")
+        # plt.show()
+        plt.clf()
+        return self.get_best_k(data["k"], data["srm"])
 
     def cross_validation(self, m, T):
         """Finds a k that gives a good test error.
@@ -165,6 +191,15 @@ class Assignment2(object):
 
     #################################
     # Place for additional methods
+
+    def get_best_k(self, ks, errors):
+        min_error_idx = np.argmin(errors)
+        best_k = ks[min_error_idx[0]]
+        print(f"best k: {best_k} error: {errors[min_error_idx[0]]}")
+        return best_k
+
+    def srm_penalty(self, k, m, delta):
+        return np.sqrt((1.0/float(m))*np.log((2.0*k)/delta))
 
     def calc_ep(self, h_intervals):
         # p1 -- x in [[0.0, 0.2], [0.4, 0.6], [0.8, 1.0]] p[Y=1|X=x]=0.8, p[Y=0|X=x]=0.2
