@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5cf5354-5ba0-4f75-80aa-4bd54ca0244a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skeleton.py" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton.py" afterDir="false" />
-    </list>
+    <list default="true" id="a5cf5354-5ba0-4f75-80aa-4bd54ca0244a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,18 +35,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/skeleton.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="830">
-              <caret line="178" column="39" selection-start-line="178" selection-start-column="39" selection-end-line="178" selection-end-column="39" />
+            <state relative-caret-position="939">
+              <caret line="202" column="14" lean-forward="true" selection-start-line="202" selection-start-column="14" selection-end-line="202" selection-end-column="14" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#91#109#0" expanded="true" />
                 <element signature="e#374#635#1" />
                 <element signature="e#730#946#1" />
                 <element signature="e#1065#1823#1" />
-                <element signature="e#2607#3186#1" />
-                <element signature="e#3282#3625#1" />
                 <element signature="e#5414#5447#0" />
-                <marker date="1574533608378" expanded="true" signature="2932:3327" ph="..." />
+                <marker date="1574533840081" expanded="true" signature="2932:3327" ph="..." />
               </folding>
             </state>
           </provider>
@@ -219,12 +214,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574368422462</updated>
-      <workItem from="1574368446247" duration="25004000" />
+      <workItem from="1574368446247" duration="25626000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25004000" />
+    <option name="totallyTimeSpent" value="25626000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="76" width="3364" height="1996" extended-state="7" />
@@ -378,18 +373,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="830">
-          <caret line="178" column="39" selection-start-line="178" selection-start-column="39" selection-end-line="178" selection-end-column="39" />
+        <state relative-caret-position="939">
+          <caret line="202" column="14" lean-forward="true" selection-start-line="202" selection-start-column="14" selection-end-line="202" selection-end-column="14" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#91#109#0" expanded="true" />
             <element signature="e#374#635#1" />
             <element signature="e#730#946#1" />
             <element signature="e#1065#1823#1" />
-            <element signature="e#2607#3186#1" />
-            <element signature="e#3282#3625#1" />
             <element signature="e#5414#5447#0" />
-            <marker date="1574533608378" expanded="true" signature="2932:3327" ph="..." />
+            <marker date="1574533840081" expanded="true" signature="2932:3327" ph="..." />
           </folding>
         </state>
       </provider>

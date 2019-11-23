@@ -175,7 +175,7 @@ class Assignment2(object):
         plt.plot('k', 'srm', data=data, marker='o', markerfacecolor='purple', markersize=4, color='purple', linewidth=0)
         plt.xlabel('k')
         plt.legend()
-        plt.savefig("section-d.png")
+        plt.savefig("section-e.png")
         # plt.show()
         plt.clf()
         return self.get_best_k(data["k"], data["srm"])
@@ -196,8 +196,8 @@ class Assignment2(object):
 
     def get_best_k(self, ks, errors):
         min_error_idx = np.argmin(errors)
-        best_k = ks[min_error_idx[0]]
-        print(f"best k: {best_k} error: {errors[min_error_idx[0]]}")
+        best_k = ks[min_error_idx]
+        print(f"best k: {best_k} error: {errors[min_error_idx]}")
         return best_k
 
     def srm_penalty(self, k, m, delta):
