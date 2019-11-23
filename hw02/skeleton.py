@@ -171,6 +171,8 @@ class Assignment2(object):
 
         plt.plot('k', 'es', data=data, marker='o', markerfacecolor='blue', markersize=4, color='skyblue', linewidth=0)
         plt.plot('k', 'ep', data=data, marker='o', markerfacecolor='orange', markersize=4, color='orange', linewidth=0)
+        plt.plot('k', 'penalty', data=data, marker='o', markerfacecolor='darkred', markersize=4, color='darkred', linewidth=0)
+        plt.plot('k', 'srm', data=data, marker='o', markerfacecolor='purple', markersize=4, color='purple', linewidth=0)
         plt.xlabel('k')
         plt.legend()
         plt.savefig("section-d.png")
