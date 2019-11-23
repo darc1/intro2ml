@@ -88,8 +88,7 @@ class Assignment2(object):
             #     empirical_errors[i] = emp_error / m
             #     true_error = self.calc_ep(best_intervals)
             #     true_errors[i] = true_error
-            samples = self.sample_from_D(m)
-            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for t in range(T))
+            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for t in range(T))
 
             data["m"].append(m)
             data["es"].append(np.average([e[0] for e in results]))
@@ -193,14 +192,54 @@ class Assignment2(object):
         """
 
         k_values = [k for k in range(1, 15)]
+        best_ks = []
         for t in range(T):
             samples = self.sample_from_D(m)
-            s_t = samples[:m/5]
-            s_ho = samples[m/5:]
-            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, m) for k in k_values)
+            np.random.shuffle(samples)
+            holdout = samples[:m/5]
+            train = samples[m/5:]
+            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, train) for k in k_values)
+            sorted(results, key=lambda item: item[2])
 
-#################################
+            ks = []
+            error = []
+            for result in results:
+                ks.append(result[2])
+                error.append(self.calc_holdout_error(holdout, results[5], m))
+
+            best_ks.append(self.get_best_k(ks, error))
+
+        (values, counts) = np.unique(best_ks, return_counts=True)
+        best_k_idx = np.argmax(counts)
+        best_overall_k = values[best_k_idx]
+        print(f"best overall k is: {best_overall_k}")
+        return best_overall_k
+
+
+    #################################
     # Place for additional methods
+
+    def calc_holdout_error(self, holdout_samples, h_intervals, m):
+        errors = 0.0
+        x = holdout_samples[:, 0]
+        y = holdout_samples[:, 1]
+
+        for i in range(x):
+            if self.in_intervals(x[i], h_intervals):
+                if y[i] == 0:
+                    errors += 1
+            else:
+                if y[i] == 1:
+                    errors += 1
+
+        return errors/m
+
+    def in_intervals(self, value, interval_group):
+        for interval in interval_group:
+            if interval[0] <= value <= interval[1]:
+                return True
+
+        return False
 
     def get_best_k(self, ks, errors):
         min_error_idx = np.argmin(errors)
@@ -248,7 +287,11 @@ class Assignment2(object):
         y = samples[:, 1]
         best_intervals, emp_error = intervals.find_best_interval(x, y, k)
         true_error = self.calc_ep(best_intervals)
-        return emp_error/len(samples), true_error, k, len(samples)
+        return emp_error/len(samples), true_error, k, len(samples), best_intervals
+
+    def run_for_k_and_m(self,k, m):
+        samples = self.sample_from_D(m)
+        return self.run_for_k(k, samples)
 
     #################################
 
