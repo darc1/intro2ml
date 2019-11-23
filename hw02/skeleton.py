@@ -196,8 +196,10 @@ class Assignment2(object):
         for t in range(T):
             samples = self.sample_from_D(m)
             np.random.shuffle(samples)
-            holdout = samples[:m/5]
-            train = samples[m/5:]
+            holdout = samples[:m//5, :]
+            train = samples[m//5:,:]
+            train = train[train[:, 0].argsort()]
+            sorted(train, key=lambda item: item[0])
             results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, train) for k in k_values)
             sorted(results, key=lambda item: item[2])
 
