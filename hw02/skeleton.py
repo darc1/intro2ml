@@ -250,7 +250,8 @@ class Assignment2(object):
         return best_k
 
     def srm_penalty(self, k, m, delta):
-        return np.sqrt((8/m)*(np.log(4/delta) + k*np.log((2*np.exp(1)*m)/k)))
+        # from theoretical questions vcdim = 2k
+        return np.sqrt((8/m)*(np.log(4/delta) + 2*k*np.log((np.exp(1)*m)/k)))
 
     def calc_ep(self, h_intervals):
         # p1 -- x in [[0.0, 0.2], [0.4, 0.6], [0.8, 1.0]] p[Y=1|X=x]=0.8, p[Y=0|X=x]=0.2
