@@ -94,9 +94,9 @@ class Assignment2(object):
             data["es"].append(np.average([e[0] for e in results]))
             data["ep"].append(np.average([e[1] for e in results]))
 
-        es = plt.plot('k', 'es', data=data, marker='o', markerfacecolor='blue',
+        es = plt.plot('m', 'es', data=data, marker='o', markerfacecolor='blue',
                       markersize=4, color='skyblue',linewidth=0)
-        ep = plt.plot('k', 'ep', data=data, marker='o', markerfacecolor='orange',
+        ep = plt.plot('m', 'ep', data=data, marker='o', markerfacecolor='orange',
                       markersize=4, color='orange',linewidth=0)
         plt.xlabel('m')
         plt.legend((es, ep), ("Empirical Error", "True Error"))

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5cf5354-5ba0-4f75-80aa-4bd54ca0244a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skeleton.py" beforeDir="false" afterPath="$PROJECT_DIR$/skeleton.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -38,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/skeleton.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4097">
-              <caret line="181" column="34" selection-start-line="181" selection-start-column="34" selection-end-line="181" selection-end-column="34" />
+            <state relative-caret-position="345">
+              <caret line="98" column="24" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#91#109#0" expanded="true" />
@@ -217,12 +216,12 @@
       <option name="presentableId" value="Default" />
       <updated>1574368422462</updated>
       <workItem from="1574368446247" duration="32191000" />
-      <workItem from="1574543352948" duration="9900000" />
+      <workItem from="1574543352948" duration="10309000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42091000" />
+    <option name="totallyTimeSpent" value="42500000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="76" width="3364" height="1996" extended-state="7" />
@@ -417,8 +416,8 @@ print(f&quot;sorted a is ----- {a}&quot;)</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4097">
-          <caret line="181" column="34" selection-start-line="181" selection-start-column="34" selection-end-line="181" selection-end-column="34" />
+        <state relative-caret-position="345">
+          <caret line="98" column="24" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#91#109#0" expanded="true" />
