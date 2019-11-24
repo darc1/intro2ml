@@ -207,7 +207,7 @@ class Assignment2(object):
             error = []
             for result in results:
                 ks.append(result[2])
-                error.append(self.calc_holdout_error(holdout, results[5], m))
+                error.append(self.calc_holdout_error(holdout, results[4], m))
 
             best_ks.append(self.get_best_k(ks, error))
 
