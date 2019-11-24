@@ -208,7 +208,7 @@ class Assignment2(object):
         (values, counts) = np.unique(best_ks, return_counts=True)
         best_k_idx = np.argmax(counts)
         best_overall_k = values[best_k_idx]
-        # print(f"best overall k is: {best_overall_k}")
+        print(f"best overall k is: {best_overall_k}")
         return best_overall_k
 
 
@@ -240,7 +240,7 @@ class Assignment2(object):
     def get_best_k(self, ks, errors):
         min_error_idx = np.argmin(errors)
         best_k = ks[min_error_idx]
-        # print(f"best k: {best_k} error: {errors[min_error_idx]}")
+        print(f"best k: {best_k} error: {errors[min_error_idx]}")
         return best_k
 
     def srm_penalty(self, k, m, delta):
