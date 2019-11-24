@@ -35,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/skeleton.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="209" column="68" lean-forward="true" selection-start-line="209" selection-start-column="68" selection-end-line="209" selection-end-column="68" />
+            <state relative-caret-position="4097">
+              <caret line="181" column="34" selection-start-line="181" selection-start-column="34" selection-end-line="181" selection-end-column="34" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#91#109#0" expanded="true" />
@@ -48,7 +48,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/section-e.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
@@ -217,12 +217,12 @@
       <option name="presentableId" value="Default" />
       <updated>1574368422462</updated>
       <workItem from="1574368446247" duration="32191000" />
-      <workItem from="1574543352948" duration="7520000" />
+      <workItem from="1574543352948" duration="9900000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39711000" />
+    <option name="totallyTimeSpent" value="42091000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="76" width="3364" height="1996" extended-state="7" />
@@ -375,18 +375,12 @@ print(f&quot;sorted a is ----- {a}&quot;)</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/section-a.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$USER_HOME$/.IntelliJIdea2019.1/system/python_stubs/707219283/numpy/core/_multiarray_umath.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249645">
           <caret line="7565" column="4" selection-start-line="7565" selection-start-column="4" selection-end-line="7565" selection-end-column="4" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/section-c.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../venv/lib/python3.6/site-packages/matplotlib/markers.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -402,6 +396,18 @@ print(f&quot;sorted a is ----- {a}&quot;)</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/section-d.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/section-c.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/section-a.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/section-e.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/intervals.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -411,20 +417,14 @@ print(f&quot;sorted a is ----- {a}&quot;)</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="209" column="68" lean-forward="true" selection-start-line="209" selection-start-column="68" selection-end-line="209" selection-end-column="68" />
+        <state relative-caret-position="4097">
+          <caret line="181" column="34" selection-start-line="181" selection-start-column="34" selection-end-line="181" selection-end-column="34" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#91#109#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/section-d.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/section-e.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
   <component name="masterDetails">
