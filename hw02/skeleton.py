@@ -83,8 +83,8 @@ class Assignment2(object):
             # results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for t in range(T))
 
             data["m"].append(m)
-            data["True Error"].append(np.average([e[0] for e in results]))
-            data["Empirical Error"].append(np.average([e[1] for e in results]))
+            data["Empirical Error"].append(np.average([e[0] for e in results]))
+            data["True Error"].append(np.average([e[1] for e in results]))
 
         plt.plot('m', 'Empirical Error', data=data, marker='o', markerfacecolor='blue', markersize=4, color='skyblue', linewidth=0)
         plt.plot('m', 'True Error', data=data, marker='o', markerfacecolor='orange', markersize=4, color='orange', linewidth=0)
