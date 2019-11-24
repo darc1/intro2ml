@@ -37,11 +37,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/skeleton.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="270" selection-start-line="270" selection-end-line="270" />
+            <state relative-caret-position="165">
+              <caret line="7" column="23" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="23" />
               <folding>
                 <element signature="n#!!doc" />
-                <element signature="e#91#109#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,6 +110,7 @@
       <find>calc_ho</find>
       <find>get_best_k</find>
       <find>print</find>
+      <find>Para</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -218,15 +218,15 @@
       <option name="presentableId" value="Default" />
       <updated>1574368422462</updated>
       <workItem from="1574368446247" duration="32191000" />
-      <workItem from="1574543352948" duration="15514000" />
+      <workItem from="1574543352948" duration="16285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47705000" />
+    <option name="totallyTimeSpent" value="48476000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="76" width="3364" height="1996" extended-state="6" />
+    <frame x="-2" y="76" width="3364" height="1996" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25336185" />
@@ -239,7 +239,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295711" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39954853" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39954853" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -277,21 +277,6 @@
           <line>56</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/skeleton.py</url>
-          <line>254</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/skeleton.py</url>
-          <line>276</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/skeleton.py</url>
-          <line>270</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -300,6 +285,16 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>p2_overlap_with_h_intervals + p2_overlap_with_h_complement_intervals + p1_overlap_with_h_intervals + p1_overlap_with_h_complement_intervals</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>p2_overlap_with_h_intervals + p2_overlap_with_h_complement_intervals</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>interval[0] &lt;= 0.1 &lt;= interval[1]</expression-string>
         <language-id>Python</language-id>
@@ -346,24 +341,6 @@ a = result[:m//5, :]
 print(f&quot;a is &quot;)
 print(f&quot;{a}&quot;)
 a.</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>np.random.shuffle(result)
-a = result[:m//5, :]
-print(f&quot;a is ----- {a}&quot;)
-a[a[0,:].argsort()]
-print(f&quot;sorted a is ----- {a}&quot;)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>np.random.shuffle(result)
-a = result[:m//5, :]
-print(f&quot;a is ----- {a}&quot;)
-a.sort()
-print(f&quot;sorted a is ----- {a}&quot;)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -433,11 +410,10 @@ print(f&quot;sorted a is ----- {a}&quot;)</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/skeleton.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="270" selection-start-line="270" selection-end-line="270" />
+        <state relative-caret-position="165">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="23" />
           <folding>
             <element signature="n#!!doc" />
-            <element signature="e#91#109#0" expanded="true" />
           </folding>
         </state>
       </provider>

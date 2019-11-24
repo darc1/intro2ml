@@ -5,7 +5,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import intervals
-# from joblib import Parallel, delayed, cpu_count
+from joblib import Parallel, delayed, cpu_count
 
 
 class Assignment2(object):
@@ -78,9 +78,9 @@ class Assignment2(object):
         data = {"m": [], "Empirical Error": [], "True Error": []}
         results = []
         for m in range(m_first, m_last + 1, step):
-            for t in range(T):
-                results.append(self.run_for_k_and_m(k, m))
-            # results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for t in range(T))
+            # for t in range(T):
+            #     results.append(self.run_for_k_and_m(k, m))
+            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for t in range(T))
 
             data["m"].append(m)
             data["Empirical Error"].append(np.average([e[0] for e in results]))
@@ -115,9 +115,9 @@ class Assignment2(object):
         data = {"k": [], "Empirical Error": [], "True Error": []}
         samples = self.sample_from_D(m)
         results = []
-        for k in range(k_first, k_last + 1, step):
-            results.append(self.run_for_k(k, samples))
-        # results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for k in range(k_first, k_last + 1, step))
+        # for k in range(k_first, k_last + 1, step):
+        #     results.append(self.run_for_k(k, samples))
+        results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for k in range(k_first, k_last + 1, step))
         sorted(results, key=lambda item: item[2])
 
         for result in results:
@@ -148,10 +148,10 @@ class Assignment2(object):
 
         data = {"k": [], "Empirical Error": [], "True Error": [], "Penalty": [], "Penalty+Empirical Error": []}
         samples = self.sample_from_D(m)
-        results = []
-        for k in range(k_first, k_last + 1):
-            results.append(self.run_for_k(k, samples))
-        # results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for k in range(k_first, k_last + 1, step))
+        # results = []
+        # for k in range(k_first, k_last + 1):
+        #     results.append(self.run_for_k(k, samples))
+        results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for k in range(k_first, k_last + 1, step))
         sorted(results, key=lambda item: item[2])
 
         for result in results:
@@ -191,10 +191,10 @@ class Assignment2(object):
             train = samples[m//5:,:]
             train = train[train[:, 0].argsort()]
             sorted(train, key=lambda item: item[0])
-            results = []
-            for k in k_values:
-                results.append(self.run_for_k(k, train))
-            # results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, train) for k in k_values)
+            # results = []
+            # for k in k_values:
+            #     results.append(self.run_for_k(k, train))
+            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, train) for k in k_values)
             sorted(results, key=lambda item: item[2])
 
             ks = []
@@ -297,6 +297,6 @@ if __name__ == '__main__':
     ass = Assignment2()
     ass.draw_sample_intervals(100, 3)
     ass.experiment_m_range_erm(10, 100, 5, 3, 100)
-    ass.experiment_k_range_erm(1500, 1, 10, 1)
-    ass.experiment_k_range_srm(1500, 1, 10, 1)
+    ass.experiment_k_range_erm(1500, 1, 20, 1)
+    ass.experiment_k_range_srm(1500, 1, 20, 1)
     ass.cross_validation(1500, 3)
