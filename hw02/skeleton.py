@@ -95,11 +95,11 @@ class Assignment2(object):
             data["ep"].append(np.average([e[1] for e in results]))
 
         es = plt.plot('m', 'es', data=data, marker='o', markerfacecolor='blue',
-                      markersize=4, color='skyblue',linewidth=0)
+                      markersize=4, color='skyblue',linewidth=0, label='Empirical Error')
         ep = plt.plot('m', 'ep', data=data, marker='o', markerfacecolor='orange',
-                      markersize=4, color='orange',linewidth=0)
+                      markersize=4, color='orange',linewidth=0, label='True Error')
         plt.xlabel('m')
-        plt.legend((es, ep), ("Empirical Error", "True Error"))
+        plt.legend(handles=[es, ep])
         plt.savefig("section-c.png")
         # plt.show()
         plt.clf()
@@ -133,11 +133,11 @@ class Assignment2(object):
             data["ep"].append(result[1])
 
         es = plt.plot('k', 'es', data=data, marker='o', markerfacecolor='blue',
-                      markersize=4, color='skyblue',linewidth=0)
+                      markersize=4, color='skyblue',linewidth=0, label='Empirical Error')
         ep = plt.plot('k', 'ep', data=data, marker='o', markerfacecolor='orange',
-                      markersize=4, color='orange',linewidth=0)
+                      markersize=4, color='orange',linewidth=0, label='True Error')
         plt.xlabel('k')
-        plt.legend((es, ep), ("Empirical Error", "True Error"))
+        plt.legend(handles=[es, ep])
         plt.savefig("section-d.png")
         # plt.show()
         plt.clf()
@@ -177,15 +177,15 @@ class Assignment2(object):
 
 
         es = plt.plot('k', 'es', data=data, marker='o', markerfacecolor='blue',
-                      markersize=3, color='skyblue',linewidth=0)
+                      markersize=3, color='skyblue',linewidth=0, label='Empirical Error')
         ep = plt.plot('k', 'ep', data=data, marker='o', markerfacecolor='orange',
-                      markersize=3, color='orange',linewidth=0)
+                      markersize=3, color='orange',linewidth=0, label='True Error')
         penalty = plt.plot('k', 'penalty', data=data, marker='o', markerfacecolor='darkred',
-                           markersize=4, color='darkred',linewidth=0)
+                           markersize=4, color='darkred',linewidth=0, label='Penalty')
         srm = plt.plot('k', 'srm', data=data, marker='o', markerfacecolor='green',
-                       markersize=4, color='green',linewidth=0)
+                       markersize=4, color='green',linewidth=0, label='Penalty + Empirical Error')
         plt.xlabel('k')
-        plt.legend((es, ep, penalty, srm), ("Empirical Error", "True Error", "Penalty", "Penalty + Empirical Error"))
+        plt.legend(handles=[es, ep, penalty, srm])
         plt.savefig("section-e.png")
         # plt.show()
         plt.clf()
