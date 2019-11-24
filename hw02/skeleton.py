@@ -102,6 +102,13 @@ class Assignment2(object):
         # plt.show()
         plt.clf()
 
+        result = np.ndarray(shape=(len(data["m"]), 2), dtype=float, order='F')
+        for i in range(len(data["m"])):
+            result[(i,0)] = data["m"][i]
+            result[(i,1)] = data["Empirical Error"][i]
+
+        return result
+
     def experiment_k_range_erm(self, m, k_first, k_last, step):
         """Finds the best hypothesis for k= 1,2,...,10.
         Plots the empirical and true errors as a function of k.
@@ -137,7 +144,7 @@ class Assignment2(object):
         plt.savefig("section-d.png")
         # plt.show()
         plt.clf()
-        return self.get_best_k(data["k"], data["es"])
+        return self.get_best_k(data["k"], data["Empirical Error"])
 
     def experiment_k_range_srm(self, m, k_first, k_last, step):
         """Runs the experiment in (d).
@@ -180,7 +187,7 @@ class Assignment2(object):
         plt.savefig("section-e.png")
         # plt.show()
         plt.clf()
-        return self.get_best_k(data["k"], data["srm"])
+        return self.get_best_k(data["k"], data["Penalty+Empirical Error"])
 
     def cross_validation(self, m, T):
         """Finds a k that gives a good test error.
