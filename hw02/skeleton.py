@@ -5,7 +5,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import intervals
-from joblib import Parallel, delayed, cpu_count
+# from joblib import Parallel, delayed, cpu_count
 
 
 class Assignment2(object):
@@ -76,19 +76,11 @@ class Assignment2(object):
             and the average true error for each m in the range accordingly.
         """
         data = {"m": [], "Empirical Error": [], "True Error": []}
-
+        results = []
         for m in range(m_first, m_last + 1, step):
-            # true_errors = np.ndarray(T)
-            # empirical_errors = np.ndarray(T)
-            # for i in range(T):
-            #     values = self.sample_from_D(m)
-            #     x = values[:, 0]
-            #     y = values[:, 1]
-            #     best_intervals, emp_error = intervals.find_best_interval(x, y, k)
-            #     empirical_errors[i] = emp_error / m
-            #     true_error = self.calc_ep(best_intervals)
-            #     true_errors[i] = true_error
-            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for t in range(T))
+            for t in range(T):
+                results.append(self.run_for_k_and_m(k, m))
+            # results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for t in range(T))
 
             data["m"].append(m)
             data["True Error"].append(np.average([e[0] for e in results]))
@@ -122,14 +114,10 @@ class Assignment2(object):
 
         data = {"k": [], "Empirical Error": [], "True Error": []}
         samples = self.sample_from_D(m)
-        # for k in range(k_first, k_last + 1):
-            # values = self.sample_from_D(m)
-            # x = values[:, 0]
-            # y = values[:, 1]
-            # h_intervals, es = intervals.find_best_interval(x, y, k)
-            # ep = self.calc_ep(h_intervals)
-
-        results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for k in range(k_first, k_last + 1, step))
+        results = []
+        for k in range(k_first, k_last + 1, step):
+            results.append(self.run_for_k(k, samples))
+        # results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for k in range(k_first, k_last + 1, step))
         sorted(results, key=lambda item: item[2])
 
         for result in results:
@@ -160,14 +148,10 @@ class Assignment2(object):
 
         data = {"k": [], "Empirical Error": [], "True Error": [], "Penalty": [], "Penalty+Empirical Error": []}
         samples = self.sample_from_D(m)
-        # for k in range(k_first, k_last + 1):
-        # values = self.sample_from_D(m)
-        # x = values[:, 0]
-        # y = values[:, 1]
-        # h_intervals, es = intervals.find_best_interval(x, y, k)
-        # ep = self.calc_ep(h_intervals)
-
-        results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for k in range(k_first, k_last + 1, step))
+        results = []
+        for k in range(k_first, k_last + 1):
+            results.append(self.run_for_k(k, samples))
+        # results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, samples) for k in range(k_first, k_last + 1, step))
         sorted(results, key=lambda item: item[2])
 
         for result in results:
@@ -207,7 +191,10 @@ class Assignment2(object):
             train = samples[m//5:,:]
             train = train[train[:, 0].argsort()]
             sorted(train, key=lambda item: item[0])
-            results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, train) for k in k_values)
+            results = []
+            for k in k_values:
+                results.append(self.run_for_k(k, train))
+            # results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k)(k, train) for k in k_values)
             sorted(results, key=lambda item: item[2])
 
             ks = []
@@ -221,7 +208,7 @@ class Assignment2(object):
         (values, counts) = np.unique(best_ks, return_counts=True)
         best_k_idx = np.argmax(counts)
         best_overall_k = values[best_k_idx]
-        print(f"best overall k is: {best_overall_k}")
+        # print(f"best overall k is: {best_overall_k}")
         return best_overall_k
 
 
@@ -253,7 +240,7 @@ class Assignment2(object):
     def get_best_k(self, ks, errors):
         min_error_idx = np.argmin(errors)
         best_k = ks[min_error_idx]
-        print(f"best k: {best_k} error: {errors[min_error_idx]}")
+        # print(f"best k: {best_k} error: {errors[min_error_idx]}")
         return best_k
 
     def srm_penalty(self, k, m, delta):
