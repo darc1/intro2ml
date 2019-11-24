@@ -75,7 +75,7 @@ class Assignment2(object):
             A two dimensional array that contains the average empirical error
             and the average true error for each m in the range accordingly.
         """
-        data = {"m": [], "es": [], "ep": []}
+        data = {"m": [], "Empirical Error": [], "True Error": []}
 
         for m in range(m_first, m_last + 1, step):
             # true_errors = np.ndarray(T)
@@ -91,15 +91,13 @@ class Assignment2(object):
             results = Parallel(n_jobs=cpu_count())(delayed(self.run_for_k_and_m)(k, m) for t in range(T))
 
             data["m"].append(m)
-            data["es"].append(np.average([e[0] for e in results]))
-            data["ep"].append(np.average([e[1] for e in results]))
+            data["True Error"].append(np.average([e[0] for e in results]))
+            data["Empirical Error"].append(np.average([e[1] for e in results]))
 
-        es = plt.plot('m', 'es', data=data, marker='o', markerfacecolor='blue',
-                      markersize=4, color='skyblue',linewidth=0, label='Empirical Error')
-        ep = plt.plot('m', 'ep', data=data, marker='o', markerfacecolor='orange',
-                      markersize=4, color='orange',linewidth=0, label='True Error')
+        plt.plot('m', 'Empirical Error', data=data, marker='o', markerfacecolor='blue', markersize=4, color='skyblue', linewidth=0)
+        plt.plot('m', 'True Error', data=data, marker='o', markerfacecolor='orange', markersize=4, color='orange', linewidth=0)
         plt.xlabel('m')
-        plt.legend(handles=[es, ep])
+        plt.legend()
         plt.savefig("section-c.png")
         # plt.show()
         plt.clf()
@@ -115,7 +113,7 @@ class Assignment2(object):
         Returns: The best k value (an integer) according to the ERM algorithm.
         """
 
-        data = {"k": [], "es": [], "ep": []}
+        data = {"k": [], "Empirical Error": [], "True Error": []}
         samples = self.sample_from_D(m)
         # for k in range(k_first, k_last + 1):
             # values = self.sample_from_D(m)
@@ -129,15 +127,13 @@ class Assignment2(object):
 
         for result in results:
             data["k"].append(result[2])
-            data["es"].append(result[0])
-            data["ep"].append(result[1])
+            data["Empirical Error"].append(result[0])
+            data["True Error"].append(result[1])
 
-        es = plt.plot('k', 'es', data=data, marker='o', markerfacecolor='blue',
-                      markersize=4, color='skyblue',linewidth=0, label='Empirical Error')
-        ep = plt.plot('k', 'ep', data=data, marker='o', markerfacecolor='orange',
-                      markersize=4, color='orange',linewidth=0, label='True Error')
+        plt.plot('k', 'Empirical Error', data=data, marker='o', markerfacecolor='blue', markersize=4, color='skyblue', linewidth=0)
+        plt.plot('k', 'True Error', data=data, marker='o', markerfacecolor='orange', markersize=4, color='orange', linewidth=0)
         plt.xlabel('k')
-        plt.legend(handles=[es, ep])
+        plt.legend()
         plt.savefig("section-d.png")
         # plt.show()
         plt.clf()
@@ -155,7 +151,7 @@ class Assignment2(object):
         Returns: The best k value (an integer) according to the SRM algorithm.
         """
 
-        data = {"k": [], "es": [], "ep": [], "penalty": [], "srm": []}
+        data = {"k": [], "Empirical Error": [], "True Error": [], "Penalty": [], "Penalty+Empirical Error": []}
         samples = self.sample_from_D(m)
         # for k in range(k_first, k_last + 1):
         # values = self.sample_from_D(m)
@@ -169,23 +165,18 @@ class Assignment2(object):
 
         for result in results:
             data["k"].append(result[2])
-            data["es"].append(result[0])
-            data["ep"].append(result[1])
+            data["Empirical Error"].append(result[0])
+            data["True Error"].append(result[1])
             srm_penalty = self.srm_penalty(result[2], m, 0.1)
-            data["penalty"].append(srm_penalty)
-            data["srm"].append(srm_penalty + result[0])
+            data["Penalty"].append(srm_penalty)
+            data["Penalty+Empirical Error"].append(srm_penalty + result[0])
 
-
-        es = plt.plot('k', 'es', data=data, marker='o', markerfacecolor='blue',
-                      markersize=3, color='skyblue',linewidth=0, label='Empirical Error')
-        ep = plt.plot('k', 'ep', data=data, marker='o', markerfacecolor='orange',
-                      markersize=3, color='orange',linewidth=0, label='True Error')
-        penalty = plt.plot('k', 'penalty', data=data, marker='o', markerfacecolor='darkred',
-                           markersize=4, color='darkred',linewidth=0, label='Penalty')
-        srm = plt.plot('k', 'srm', data=data, marker='o', markerfacecolor='green',
-                       markersize=4, color='green',linewidth=0, label='Penalty + Empirical Error')
+        plt.plot('k', 'Empirical Error', data=data, marker='o', markerfacecolor='blue', markersize=4, color='skyblue', linewidth=0)
+        plt.plot('k', 'True Error', data=data, marker='o', markerfacecolor='orange', markersize=4, color='orange', linewidth=0)
+        plt.plot('k', 'Penalty', data=data, marker='o', markerfacecolor='darkred', markersize=4, color='darkred', linewidth=0)
+        plt.plot('k', 'Penalty+Empirical Error', data=data, marker='o', markerfacecolor='green', markersize=4, color='green', linewidth=0)
         plt.xlabel('k')
-        plt.legend(handles=[es, ep, penalty, srm])
+        plt.legend()
         plt.savefig("section-e.png")
         # plt.show()
         plt.clf()
