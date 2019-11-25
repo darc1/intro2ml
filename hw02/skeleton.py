@@ -184,8 +184,8 @@ class Assignment2(object):
 
         k_values = [k for k in range(1, 11)]
         best_ks = []
+        samples = self.sample_from_D(m)
         for t in range(T):
-            samples = self.sample_from_D(m)
             np.random.shuffle(samples)
             holdout = samples[:m//5, :]
             train = samples[m//5:,:]
