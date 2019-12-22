@@ -28,6 +28,7 @@ def section_1_a():
 def section_1_b():
     w = perceptron(train_data, train_labels)
     plt.imshow(np.reshape(w, (28, 28)), interpolation='nearest')
+    plt.title("w as image")
     plt.savefig("section-1-b.png")
     plt.show()
     plt.clf()
@@ -42,7 +43,6 @@ def section_1_b():
         image_1 = positive_images[i]
         fig.add_subplot(row, col, i + 1)
         plt.imshow(np.reshape(test_data[image_1[2]], (28, 28)), interpolation='nearest')
-
     plt.savefig("section-1-b-classified-positive-successfully.png")
     plt.show()
     plt.clf()
@@ -219,6 +219,6 @@ if __name__ == "__main__":
     # section_1_d()
     #
     # section_2_a()
-    section_2_b()
+    # section_2_b()
     # section_2_c()
-    # section_2_d()
+    section_2_d()
