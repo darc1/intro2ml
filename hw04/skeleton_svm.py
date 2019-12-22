@@ -123,7 +123,7 @@ def rbf_accuracy_per_gamma(X_train, y_train, X_val, y_val):
         # plt.title(f'RBF\n GAMMA=10^{i}')
         # plt.savefig(f"GAMMA-accuracy-10-{i}.png")
         # plt.show()
-        i+=1;
+        i+=1
     # plt.plot(gamma_values, results_training, marker='x', color='r', label='Training Accuracy')
     # plt.plot(gamma_values, results_validation, marker='o', color='c', label='Validation Accuracy')
     # plt.ylabel('Validation Accuracy')
@@ -131,13 +131,13 @@ def rbf_accuracy_per_gamma(X_train, y_train, X_val, y_val):
     # plt.title('Accuracy as a function of GAMMA')
     # plt.xscale('log')
     # plt.legend()
-    # plt.savefig(f"GAMMA-accuracy-{i}.png")
+    # plt.savefig(f"GAMMA-accuracy.png")
     # plt.show()
 
     return np.array(results_validation)
 
-if __name__ == "__main__":
-    X_train, y_train, X_val, y_val = get_points()
-    train_three_kernels(X_train, y_train, X_val, y_val)
-    linear_accuracy_per_C(X_train, y_train, X_val, y_val)
-    rbf_accuracy_per_gamma(X_train, y_train, X_val, y_val)
+# if __name__ == "__main__":
+#     X_train, y_train, X_val, y_val = get_points()
+#     train_three_kernels(X_train, y_train, X_val, y_val)
+#     linear_accuracy_per_C(X_train, y_train, X_val, y_val)
+#     rbf_accuracy_per_gamma(X_train, y_train, X_val, y_val)
