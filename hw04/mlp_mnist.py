@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 from numpy.random import seed
+
 seed(1)
 
 import keras
@@ -58,6 +59,16 @@ class KerasMnist(object):
         '''
         ### YOUR CODE STARTS HERE
 
+        self.model = Sequential()
+        num_hidden_layers = len(self.hidden_layer_dims)
+        for i in range(num_hidden_layers):
+            if i == 0:
+                self.model.add(Dense(self.hidden_layer_dims[i], activation='relu', input_shape=(self.input_dim,)))
+            else:
+                self.model.add(Dense(self.hidden_layer_dims[i], activation='relu'))
+
+        self.model.add(Dense(self.num_classes, activation='softmax'))
+
         ### YOUR CODE ENDS HERE
 
         self.model.compile(loss='categorical_crossentropy',
@@ -77,6 +88,25 @@ class KerasMnist(object):
          2) Define the variable out as the output of the network.
         '''
         ### YOUR CODE STARTS HERE
+
+        x = Input(shape=(self.input_dim,))
+
+        curr_layer = Dense(self.hidden_layer_dims[0])(x)
+        Activation('relu')(curr_layer)
+        skipped_layer = curr_layer
+        skip = self.skips
+
+        num_hidden_layers = len(self.hidden_layer_dims)
+        for i in range(1, num_hidden_layers):
+            if (i % skip == 1 and i > skip) or (skip == 1):
+                added = keras.layers.Add()([skipped_layer, curr_layer])
+                skipped_layer = curr_layer
+                curr_layer = Dense(self.hidden_layer_dims[i], activation='relu')(added)
+            else:
+                curr_layer = Dense(self.hidden_layer_dims[i])(curr_layer)
+            Activation('relu')(curr_layer)
+
+        out = Dense(self.num_classes, activation='softmax')(curr_layer)
 
         ### YOUR CODE ENDS HERE
 
@@ -100,7 +130,7 @@ class KerasMnist(object):
     @staticmethod
     def plot_curves(history, figpath):
         history_dict = history.history
-        for metric in ['loss', 'acc']:
+        for metric in ['loss', 'accuracy']:
             plt.clf()
             metric_values = history_dict[metric]
             val_metric_values = history_dict['val_' + metric]
@@ -110,4 +140,3 @@ class KerasMnist(object):
             plt.xlabel('epochs')
             plt.ylabel(metric)
             plt.savefig(figpath + '_' + metric + '.png')
-
