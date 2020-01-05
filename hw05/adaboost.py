@@ -34,7 +34,7 @@ def run_adaboost(X_train, y_train, T):
         total_error = calc_hypotheses_error(X_train, y_train, best_hypotheses ,weights)
         alpha = calc_amount_of_say(total_error)
         weights = adjust_weights(X_train, y_train, best_hypotheses, weights, alpha, total_error)
-        # print(f"found best h={best_hypotheses}, error: {total_error}, alpha:{alpha} sum adjusted weights={sum(weights)} for t={t}")
+        print(f"found best h={best_hypotheses}, error: {total_error}, alpha:{alpha} sum adjusted weights={sum(weights)} for t={t}")
 
         alpha_vals.append(alpha)
         hypotheses.append(best_hypotheses)
@@ -120,6 +120,26 @@ def run_hypotheses(h, x):
         return h[0]
     return -1 * h[0]
 
+def run_adaboost_classifier(xi, T, alphas, hs):
+    sum = 0.0
+    for t in range(T):
+        sum += alphas[t]*run_hypotheses(hs[t], xi)
+
+    if sum >= 0:
+        return 1
+
+    return -1
+
+def calc_error_for_t(X, Y, T, alphas, hs):
+    sum = 0.0
+    m = len(X)
+    for i in range(m):
+        y_hat = run_adaboost_classifier(X[i], T, alphas, hs)
+        if y_hat == Y[i]:
+            sum += 1
+
+    return 1-sum/m
+
 def calc_avg_exp_loss(X, Y, T, alphas, hs):
     sum = 0.0
     m = len(X)
@@ -141,14 +161,32 @@ def main():
         return
     (X_train, y_train, X_test, y_test, vocab) = data
 
-    T = 10
-    hypotheses, alpha_vals = run_adaboost(X_train, y_train, T)
+    # T = 10
+    # hypotheses, alpha_vals = run_adaboost(X_train, y_train, T)
     # print(f"{[ (vocab[h[1]], h[1]) for h in hypotheses] }")
 
     # T = 80
     # hypotheses, alpha_vals = run_adaboost(X_train, y_train, T)
     # print(f"{[ (vocab[h[1]], h[1]) for h in hypotheses] }")
+    # import json
+    # with open("t80.json", "w+") as w:
+    #     w.write(json.dumps({'h':hypotheses, 'a': alpha_vals}))
+    # with open("t80.json", "r") as r:
+    #     j = json.loads(r.read())
+    #     hypotheses, alpha_vals = j['h'], j['a']
     #
+    # train_error = []
+    # test_error = []
+    # for t in range(T):
+    #     train_error.append(calc_error_for_t(X_train, y_train, t, alpha_vals, hypotheses))
+    #     test_error.append(calc_error_for_t(X_test, y_test, t, alpha_vals, hypotheses))
+    #
+    # plt.plot( [t for t in range(T)], train_error, marker='x', color='red')
+    # plt.plot( [t for t in range(T)], test_error, marker='o', color='green')
+    # plt.legend(['train error', 'test error'], loc='upper left')
+    # plt.savefig("section-a.png")
+    # plt.show()
+
     # train_exp_loss = []
     # test_exp_loss = []
     # for t in range(T):
