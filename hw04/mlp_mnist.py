@@ -63,9 +63,9 @@ class KerasMnist(object):
         num_hidden_layers = len(self.hidden_layer_dims)
         for i in range(num_hidden_layers):
             if i == 0:
-                self.model.add(Dense(self.hidden_layer_dims[i], activation='relu', input_shape=(self.input_dim,)))
+                self.model.add(Dense(self.hidden_layer_dims[i], activation='tanh', input_shape=(self.input_dim,)))
             else:
-                self.model.add(Dense(self.hidden_layer_dims[i], activation='relu'))
+                self.model.add(Dense(self.hidden_layer_dims[i], activation='tanh'))
 
         self.model.add(Dense(self.num_classes, activation='softmax'))
 
